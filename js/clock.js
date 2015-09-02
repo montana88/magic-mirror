@@ -2,19 +2,6 @@ var getDateTime = function () {
     "use strict";
 };
 
-getDateTime.prototype.startTime = function() {
-
-    var that = this;
-    var currentTime = this.getTime();
-
-    document.getElementById('clock').innerHTML = currentTime.hour + ":" + currentTime.minute + ":" + currentTime.seconds;
-
-    var t = setTimeout( function(){
-        that.startTime();
-    }, 1000);
-
-};
-
 getDateTime.prototype.getTime = function() {
 
     var today = new Date();
@@ -44,14 +31,3 @@ getDateTime.prototype.checkTime = function(i) {
 
     return i;
 };
-
-if(document.readyState === "complete") {
-    var dateTime = new getDateTime();
-    dateTime.startTime();
-} else {
-    window.addEventListener("DOMContentLoaded", function () {
-        var dateTime = new getDateTime();
-        dateTime.startTime();
-        dateTime.test();
-    }, false);
-}

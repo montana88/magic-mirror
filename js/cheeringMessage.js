@@ -1,10 +1,20 @@
-if(document.readyState === "complete") {
-    var dateTime = new getDateTime();
-    dateTime.startTime();
-} else {
-    window.addEventListener("DOMContentLoaded", function () {
-        var dateTime = new getDateTime();
+var message = {
 
-        console.log(dateTime.getTime());
-    }, false);
-}
+    "morning": [
+        'Good morning, handsome!',
+        'Enjoy your day!',
+        'How was your sleep?'
+    ],
+
+    "afternoon": [
+        'Hello, beauty!',
+        'You look sexy!',
+        'Looking good today!'
+    ],
+
+    "evening": [
+        'Wow, you look hot!',
+        'You look nice!',
+        'Hi, sexy!'
+    ]
+};
