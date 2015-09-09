@@ -12,9 +12,26 @@ body, html {
     font-size: 75px;
     -webkit-font-smoothing: antialiased;
 }
+#news {
+    width: 26%;
+    overflow: hidden;
+}
+#news a {
+    color: #ffffff;
+    text-decoration: none;
+}
+#news p:nth-of-type(n+2), #news h2, #news img {
+    display: none;
+}
+#news > div {
+    display: none;
+}
+#news > div:first-child {
+    display: block;
+}
+
 .wi {
     line-height: 75px;
-
 }
 
 .top

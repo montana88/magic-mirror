@@ -13,12 +13,16 @@
         <div id="message"></div>
     </div>
 
-    <div id="weather" class="left top"></div>
+    <div id="weather" class="right top"></div>
 
-    <script src="js/main.js"></script>
+    <div id="news" class="left top"></div>
+
+    <script src="js/jquery-2.1.4.min.js"></script>
     <script src="js/clock.js"></script>
     <script src="js/cheeringMessage.js"></script>
     <script src="js/weather.js"></script>
+    <script src="js/newsFeed.js"></script>
+    <script src="js/main.js"></script>
 
 </body>
 </html>
