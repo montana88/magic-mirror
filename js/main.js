@@ -172,7 +172,7 @@ var gitReload = {
         $.getJSON('githash.php', {}, function(json, textStatus) {
             if (json) {
                 if (json.gitHash != gitHash) {
-                    console.log('change again');
+                    console.log('hahahahahahahahahahahahahahahahahhahahahahaha');
                     window.location.reload();
                     window.location.href=window.location.href;
                 }
