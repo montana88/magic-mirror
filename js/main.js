@@ -159,10 +159,31 @@ var news = {
 
         timer = setTimeout(run, 20000);
 
-
     }
 
 };
+
+var gitReload = {
+
+    reload: function() {
+
+        var that = this;
+
+        $.getJSON('githash.php', {}, function(json, textStatus) {
+            if (json) {
+                if (json.gitHash != gitHash) {
+                    console.log('reload is true');
+                    window.location.reload();
+                    window.location.href=window.location.href;
+                }
+            }
+        });
+        setTimeout(function() {
+            that.reload();
+        }, 3000);
+    }
+
+}
 
 var calendar = {
 
@@ -290,6 +311,7 @@ if(document.readyState === "complete") {
     news.init();
     calendar.updateCalendarData();
     calendar.updateCalendar();
+    gitReload.reload();
 } else {
     window.addEventListener("DOMContentLoaded", function () {
         item1.clock();
@@ -298,5 +320,6 @@ if(document.readyState === "complete") {
         news.init();
         calendar.updateCalendarData();
         calendar.updateCalendar();
+        gitReload.reload();
     }, false);
 }

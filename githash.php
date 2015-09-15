@@ -1,7 +1,2 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Toni
- * Date: 15-09-15
- * Time: 15:01
- */ 
+    echo json_encode(array('gitHash'=>trim(`git rev-parse HEAD`)));

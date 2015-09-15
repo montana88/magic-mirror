@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Magic Mirror</title>
+    <script type="text/javascript">
+        var gitHash = '<?php echo trim(`git rev-parse HEAD`) ?>';
+    </script>
+    <meta name="google" value="notranslate" />
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
