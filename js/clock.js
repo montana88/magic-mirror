@@ -31,3 +31,45 @@ getDateTime.prototype.checkTime = function(i) {
 
     return i;
 };
+
+getDateTime.prototype.getDate = function () {
+
+    var currentDate = new Date();
+    var dayName     = currentDate.getDay();
+    var day     = currentDate.getUTCDate();
+    var month   = currentDate.getMonth();
+    var year    = currentDate.getFullYear();
+
+    var weekday = new Array(7);
+    weekday[0]=  "Zondag";
+    weekday[1] = "Maandag";
+    weekday[2] = "Dinsdag";
+    weekday[3] = "Woensdag";
+    weekday[4] = "Donderdag";
+    weekday[5] = "Vrijdag";
+    weekday[6] = "Zaterdag";
+
+    var monthName = new Array(7);
+    monthName[1] = "jan";
+    monthName[2] = "feb";
+    monthName[3] = "maa";
+    monthName[4] = "apr";
+    monthName[5] = "mei";
+    monthName[6] = "jun";
+    monthName[7] = "jul";
+    monthName[8] = "aug";
+    monthName[9] = "sep";
+    monthName[10] = "okt";
+    monthName[11] = "nov";
+    monthName[12] = "dec";
+
+    var date = {
+        "dayName": weekday[dayName],
+        "day": this.checkTime(day),
+        "month": monthName[month],
+        "year": year
+    };
+
+    return date;
+
+};

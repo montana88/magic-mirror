@@ -6,11 +6,27 @@ var item1 = {
         var dateTime = new getDateTime();
         var currentTime = dateTime.getTime();
 
-        document.getElementById('time').innerHTML = currentTime.hour + ":" + currentTime.minute + ":" + currentTime.seconds;
+        document.getElementById('time').innerHTML = currentTime.hour + ':' + currentTime.minute + '<span class="sec">' + currentTime.seconds + '</span>';
 
         var t = setTimeout( function(){
             that.clock();
         }, 1000);
+
+    },
+
+    date: function () {
+
+        var that = this;
+        var dateTime = new getDateTime();
+        var currentDate = dateTime.getDate();
+
+        console.log(currentDate);
+
+        document.getElementById('date').innerHTML = currentDate.dayName + " " + currentDate.day + " " + currentDate.month + " " + currentDate.year;
+
+        var t = setTimeout( function(){
+            that.clock();
+        }, 86400000);
 
     },
 
@@ -44,13 +60,13 @@ currentWeather = {
 
     init: function() {
 
-        var that = this;
-
-            var getWeather = loadWeatherApi.filter();
-            var weatherElement = document.getElementById('weather');
-            var windDegName;
-
-            var iconTable = {
+        var getWeather = loadWeatherApi.filter(),
+            getDays = getWeather.week,
+            weatherElement = document.getElementById('weather'),
+            day = new Date(),
+            that = this,
+            firstRow = '',
+            iconTable = {
                 '01d':'wi-day-sunny',
                 '02d':'wi-day-cloudy',
                 '03d':'wi-cloudy',
@@ -69,40 +85,69 @@ currentWeather = {
                 '11n':'wi-night-thunderstorm',
                 '13n':'wi-night-snow',
                 '50n':'wi-night-alt-cloudy-windy'
-            };
+            },
+            weekday = ['Zo','Ma','Di','Wo','Do','Vr','Za','Zo','Ma','Di','Wo','Do','Vr','Za'];
 
-            if (getWeather.wind.deg < 23 && getWeather.wind.deg > 0 || getWeather.wind.deg > 338 && getWeather.wind.deg < 360) {
-                windDegName = "Z";
-            } else if (getWeather.wind.deg >= 23 && getWeather.wind.deg <= 68) {
-                windDegName = "ZW";
-            } else if (getWeather.wind.deg > 68 && getWeather.wind.deg <= 113) {
-                windDegName = "W";
-            } else if (getWeather.wind.deg > 113 && getWeather.wind.deg <= 158) {
-                windDegName = "NW";
-            } else if (getWeather.wind.deg > 158 && getWeather.wind.deg <= 203) {
-                windDegName = "N";
-            } else if (getWeather.wind.deg > 203 && getWeather.wind.deg <= 248) {
-                windDegName = "NO";
-            } else if (getWeather.wind.deg > 248 && getWeather.wind.deg <= 293) {
-                windDegName = "O";
-            } else if (getWeather.wind.deg > 293 && getWeather.wind.deg <= 338) {
-                windDegName = "ZO";
+        for (var prop in getDays) {
+
+            if(getDays.hasOwnProperty(prop)) {
+
+                var countDays = day.getDay() + parseInt(prop);
+
+                firstRow += '<tr>' +
+                                '<td class="day">' + weekday[countDays] + '</td>' +
+                                '<td><span class="' + iconTable[getDays[prop].weather] + '"></span></td>' +
+                                '<td><span style="float:left;">' + getDays[prop].temperature + '\u02DA' + '</span></td>' +
+                                '<td><span style="float:right;"><span class="wi-wind-north" style="margin-right:5px;display: inline-block;transform: rotate(' + getDays[prop].wind.deg + 'deg);"></span>' + that.getWindDeg(getDays[prop].wind.deg).toUpperCase() + '</span></td>' +
+                            '</tr>';
+
             }
 
-            var iconClass = iconTable[getWeather.weather.type.icon];
+        }
 
-            weatherElement.innerHTML = '<p class="location">' + getWeather.location + '</p>' +
-                                       '<span class=" ' + iconClass + ' "></span>' +
-                                       '<p class="avgTemp">' + getWeather.temperature + ' \u02DA' + 'C' + '</p>' +
-                                       '<p class="windSpeed">' + getWeather.wind.speed + ' Bft' + '</p>' +
-                                       '<p class="windDeg">' +
-                                           '<span class="wi-wind-north" style="display: inline-block; transform: rotate(' + getWeather.wind.deg + 'deg);"></span>' + ' ' + windDegName +
-                                       '</p>';
+        weatherElement.innerHTML = '<div class="currentDay">' +
+                                        '<div class="weatherCurrent">' +
+                                            '<p style="font-size:22px;margin: 0;"><span class="icon-small wi-up"></span>' + getWeather.currentDay.temperature.max + '\u02DA ' + '<span class="icon-small wi-down"></span>' + getWeather.currentDay.temperature.min + '\u02DA ' +
+                                            '<span class="icon-small wi-wind-north" style="display: inline-block;transform: rotate(' + getWeather.currentDay.wind.deg + 'deg);"></span>' + that.getWindDeg(getWeather.currentDay.wind.deg).toUpperCase() + ' <span class="icon-small wi-strong-wind"></span>' + getWeather.currentDay.wind.speed + '</p>' +
+                                            '<p style="margin: -10px 0 0 0;font-size: 67px;text-align:center;padding-left: 20px;" class="' + iconTable[getWeather.currentDay.weather] + '"> <span class="currentdayTemp"><span class="icon-medium wi-thermometer"></span>' + getWeather.currentDay.temperature.avg + '\u02DA</span></p>' +
+                                        '</div>' +
+                                    '</div>' +
+                                    '<table class="forecast-table">' +
+                                        '<tbody>' +
+                                            firstRow +
+                                        '</tbody>' +
+                                    '</table>';
 
         // update weather every minute
         setTimeout(function() {
             that.init();
         }, 60000);
+
+    },
+
+    getWindDeg: function (data) {
+
+        var windDegName;
+
+        if (data < 23 && data > 0 || data > 338 && data < 360) {
+            windDegName = "z";
+        } else if (data >= 23 && data <= 68) {
+            windDegName = "zw";
+        } else if (data > 68 && data <= 113) {
+            windDegName = "w";
+        } else if (data > 113 && data <= 158) {
+            windDegName = "nw";
+        } else if (data > 158 && data <= 203) {
+            windDegName = "n";
+        } else if (data > 203 && data <= 248) {
+            windDegName = "no";
+        } else if (data > 248 && data <= 293) {
+            windDegName = "o";
+        } else if (data > 293 && data <= 338) {
+            windDegName = "zo";
+        }
+
+        return windDegName;
 
     }
 
@@ -113,28 +158,14 @@ var news = {
     init: function() {
 
         var that = this;
-
-        // get newsfeed!!
-        newsFeed.init();
-        this.carousel();
-
-        // update weather every minute
-        setTimeout(function() {
-            for(var i = 0; i <= 9; i++){
-                document.getElementById("news").removeChild(document.getElementById("article" + i));
-            }
-            that.init();
-        }, 200000);
-
-    },
-
-    carousel: function() {
-
         var slides;
         var amount;
         var i;
         var animation;
         var timer;
+
+        // get newsfeed!!
+        newsFeed.init();
 
         function run() {
             // hiding previous image and showing next
@@ -149,7 +180,7 @@ var news = {
             $(slides[i]).delay(animation).fadeIn(animation);
 
             // loop
-            timer = setTimeout(run, 20000);
+            timer = setTimeout(run, 30000);
         }
 
         slides = document.getElementById('news').children;
@@ -157,10 +188,30 @@ var news = {
         i=0;
         animation = 2000;
 
-        timer = setTimeout(run, 20000);
+        timer = setTimeout(run, 30000);
+
+
+        // update weather every minute
+        setTimeout(function() {
+
+            clearTimeout(timer);
+
+            document.getElementById("news").innerHTML = '';
+
+            that.init();
+
+        }, 600000);
 
     }
 
+};
+
+var testingRuby = {
+    init: function() {
+        $.getJSON("temp.json", function(data) {
+            console.log(data);
+        });
+    }
 };
 
 var gitReload = {
@@ -172,9 +223,9 @@ var gitReload = {
         $.getJSON('githash.php', {}, function(json, textStatus) {
             if (json) {
                 if (json.gitHash != gitHash) {
-                    console.log('hahahahahahahahahahahahahahahahahhahahahahaha');
+                    console.log('check 2');
                     window.location.reload();
-                    window.location.href=window.location.href;
+                    window.location.href = window.location.href;
                 }
             }
         });
@@ -183,8 +234,9 @@ var gitReload = {
         }, 3000);
     }
 
-}
+};
 
+//@TODO add secondary calendars!!!
 var calendar = {
 
     eventList: [],
@@ -302,11 +354,12 @@ var calendar = {
         }, 1000);
     }
 
-}
+};
 
 if(document.readyState === "complete") {
     item1.clock();
     item1.compliment();
+    item1.date();
     currentWeather.init();
     news.init();
     calendar.updateCalendarData();
@@ -316,10 +369,12 @@ if(document.readyState === "complete") {
     window.addEventListener("DOMContentLoaded", function () {
         item1.clock();
         item1.compliment();
+        item1.date();
         currentWeather.init();
         news.init();
         calendar.updateCalendarData();
         calendar.updateCalendar();
         gitReload.reload();
+        //testingRuby.init();
     }, false);
 }

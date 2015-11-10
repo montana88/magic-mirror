@@ -1,20 +1,68 @@
 var message = {
 
     "morning": [
-        'Good morning, handsome!',
-        'Enjoy your day!',
-        'How was your sleep?'
+        'How do you make holy water? You boil the hell out of it.',
+        'If you think nobody cares if you’re alive, try missing a couple of payments.',
+        'If God is watching us, the least we can do is be entertaining.',
+        'To steal ideas from one person is plagiarism. To steal from many is research.',
+        'It’s not the fall that kills you; it’s the sudden stop at the end.',
+        'My psychiatrist told me I was crazy and I said I want a second opinion. He said okay, you’re ugly too.',
+        'Money can’t buy happiness, but it sure makes misery easier to live with.',
+        'Worrying works! 90% of the things I worry about never happen.',
+        'Just remember…if the world didn’t suck, we’d all fall off.',
+        'You’re never too old to learn something stupid.',
+        'I like work. It fascinates me. I sit and look at it for hours.',
+        'Hallmark Card: “I’m so miserable without you, it’s almost like you’re still here.”',
+        'By the time a man realises that his father was right, he has a son who thinks he’s wrong.',
+        'Keep the dream alive: Hit the snooze button.',
+        'Without nipples, breasts would be pointless.',
+        'Dogs have masters. Cats have staff.',
+        'Archaeologist: someone whose career lies in ruins.',
+        'If you can’t convince them, confuse them.',
+        'As you think, so shall you become.'
     ],
 
     "afternoon": [
-        'Hello, beauty!',
-        'You look sexy!',
-        'Looking good today!'
+        'Wise people think all they say, fools say all they think.',
+        'War does not determine who is right - only who is left.',
+        'Crowded elevators smell different to midgets.',
+        'We never really grow up, we only learn how to act in public.',
+        'A computer once beat me at chess, but it was no match for me at kick boxing.',
+        'Never hit a man with glasses. Hit him with a baseball bat.',
+        'My opinions may have changed, but not the fact that I am right.',
+        'Hospitality: making your guests feel like they’re at home, even if you wish they were.',
+        'I used to be indecisive. Now I’m not sure.',
+        'Women may not hit harder, but they hit lower.',
+        'A TV can insult your intelligence, but nothing rubs it in like a computer.',
+        'A bus is a vehicle that runs twice as fast when you are after it as when you are in it.',
+        'If winning isn’t everything why do they keep score?',
+        'I don’t suffer from insanity. I enjoy every minute of it.',
+        'Why do they lock gas station bathrooms? Are they afraid someone will clean them?',
+        'I don’t have a beer gut, I have a protective covering for my rock hard abs.',
+        'Hard work never killed anyone, but why take the chance?',
+        'I married Miss Right. I just didn’t know her first name was Always.',
+        'The hell with circumstances; i create opportunities.'
     ],
 
     "evening": [
-        'Wow, you look hot!',
-        'You look nice!',
-        'Hi, sexy!'
+        'He who smiles in a crisis has found someone to blame.',
+        'To steal ideas from one person is plagiarism. To steal from many is research.',
+        'We live in a society where pizza gets to your house faster than the police.',
+        'Light travels faster than sound. This is why some people appear bright until you hear them speak.',
+        'I intend to live forever. So far, so good.',
+        'Some cause happiness wherever they go. Others whenever they go.',
+        'A diplomat is someone who can tell you to go to hell in such a way that you will look forward to the trip.',
+        'I don’t trust anything that bleeds for five days and doesn’t die.',
+        'When in doubt, mumble.',
+        'I always take life with a grain of salt, …plus a slice of lemon, …and a shot of tequila.',
+        'Whoever coined the phrase “Quiet as a mouse” has never stepped on one.',
+        'Money talks…but all mine ever says is good-bye.',
+        'Remember, if you smoke after sex you’re doing it too fast.',
+        'The difference between in-laws and outlaws? Outlaws are wanted.',
+        'What if there were no hypothetical questions?',
+        'Do not pray for an easy life, pray for the strenght to endure a difficult one.',
+        'Life itself is your teacher, and you are in a state of constant learning',
+        'always be yourself, express yourself, have faith in yourself',
+        ''
     ]
 };
