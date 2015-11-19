@@ -20,13 +20,11 @@ var item1 = {
         var dateTime = new getDateTime();
         var currentDate = dateTime.getDate();
 
-        console.log(currentDate);
-
         document.getElementById('date').innerHTML = currentDate.dayName + " " + currentDate.day + " " + currentDate.month + " " + currentDate.year;
 
         var t = setTimeout( function(){
-            that.clock();
-        }, 86400000);
+            that.date();
+        }, 3600000);
 
     },
 
@@ -121,7 +119,7 @@ currentWeather = {
         // update weather every minute
         setTimeout(function() {
             that.init();
-        }, 60000);
+        }, 1000);
 
     },
 
@@ -236,7 +234,7 @@ var gitReload = {
 
 };
 
-//@TODO add secondary calendars!!!
+// TODO: add secondary calendars!!!
 var calendar = {
 
     eventList: [],
@@ -320,7 +318,7 @@ var calendar = {
                         }
                     }
                 }
-            };
+            }
 
             that.eventList.sort(function(a,b){return a.seconds-b.seconds});
 
@@ -356,7 +354,8 @@ var calendar = {
 
 };
 
-if(document.readyState === "complete") {
+window.onload = function () {
+
     item1.clock();
     item1.compliment();
     item1.date();
@@ -364,17 +363,7 @@ if(document.readyState === "complete") {
     news.init();
     calendar.updateCalendarData();
     calendar.updateCalendar();
-    gitReload.reload();
-} else {
-    window.addEventListener("DOMContentLoaded", function () {
-        item1.clock();
-        item1.compliment();
-        item1.date();
-        currentWeather.init();
-        news.init();
-        calendar.updateCalendarData();
-        calendar.updateCalendar();
-        gitReload.reload();
-        //testingRuby.init();
-    }, false);
-}
+//    gitReload.reload();
+//    testingRuby.init();
+
+};
