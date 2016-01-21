@@ -169,8 +169,10 @@ body, html {
     color: #999;
 }
 #message {
-    left: 120px;
-    right: 120px;
+    left: 270px;
+    right: 270px;
+    line-height: 30px;
+    margin-top: -70px;
 }
 #message p {
     line-height: 28px;

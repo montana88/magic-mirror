@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="nl">
+<html lang="nl" ng-app="magicMirror">
 <head>
     <meta charset="UTF-8">
     <title>Magic Mirror</title>
@@ -7,17 +7,22 @@
         var gitHash = '<?php echo trim(`git rev-parse HEAD`) ?>';
     </script>
     <meta name="google" value="notranslate">
-    <meta http-equiv="refresh" content="21600; URL=http://localhost:8888/magic-mirror/">
+    <!--<meta http-equiv="refresh" content="21600; URL=http://localhost:8888/magic-mirror/">-->
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/main.css">
+
+    <script src="js/lib/angular.min.js"></script>
+    <script src="js/magic-mirror.js"></script>
 </head>
 <body>
 
-    <!--<?php system("ruby icloud.rb"); ?>-->
+    <div id="message" class="center-ver center-hor small" ng-controller="funnyMessage">{{ joke }}</div>
 
-    <div id="message" class="center-ver center-hor small"></div>
-
-    <div class="top left"><div id="date" class="date small dimmed"></div><div id="time" class="time"></div><div class="calendar xxsmall"></div></div>
+    <div class="top left">
+        <div id="date" class="date small dimmed" ng-controller="TimeCtrl">{{ date }}</div>
+        <div id="time" class="time" ng-controller="TimeCtrl">{{ clock | date:'HH:mm' }} <span class="sec">{{ clock | date:'ss' }}</span></div>
+        <div class="calendar xxsmall"></div>
+    </div>
 
     <div id="weather" class="right small top"></div>
 

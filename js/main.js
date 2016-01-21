@@ -1,6 +1,6 @@
 var item1 = {
 
-    clock: function () {
+    /*clock: function () {
 
         var that = this;
         var dateTime = new getDateTime();
@@ -12,9 +12,9 @@ var item1 = {
             that.clock();
         }, 1000);
 
-    },
+    },*/
 
-    date: function () {
+    /*date: function () {
 
         var that = this;
         var dateTime = new getDateTime();
@@ -26,9 +26,9 @@ var item1 = {
             that.date();
         }, 3600000);
 
-    },
+    },*/
 
-    compliment: function () {
+    /*compliment: function () {
 
         var that = this;
         var compliment;
@@ -50,7 +50,7 @@ var item1 = {
             that.compliment();
         }, 60000);
 
-    }
+    }*/
 
 };
 
@@ -356,9 +356,9 @@ var calendar = {
 
 window.onload = function () {
 
-    item1.clock();
-    item1.compliment();
-    item1.date();
+//    item1.clock();
+//    item1.compliment();
+//    item1.date();
     currentWeather.init();
     news.init();
     calendar.updateCalendarData();
