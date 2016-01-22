@@ -12,15 +12,16 @@
     <link rel="stylesheet" href="css/main.css">
 
     <script src="js/lib/angular.min.js"></script>
+    <script src="js/lib/angular-sanitize.min.js"></script>
     <script src="js/magic-mirror.js"></script>
 </head>
 <body>
 
-    <div id="message" class="center-ver center-hor small" ng-controller="funnyMessage">{{ joke }}</div>
+    <div id="message" class="center-ver center-hor small" ng-controller="funnyMessage as message" ng-bind-html="message.joke"></div>
 
-    <div class="top left">
-        <div id="date" class="date small dimmed" ng-controller="TimeCtrl">{{ date }}</div>
-        <div id="time" class="time" ng-controller="TimeCtrl">{{ clock | date:'HH:mm' }} <span class="sec">{{ clock | date:'ss' }}</span></div>
+    <div class="top left" ng-controller="TimeController as clock">
+        <div id="date" class="date small dimmed">{{ clock.date }}</div>
+        <div id="time" class="time">{{ clock.time | date:'HH:mm' }} <span class="sec">{{ clock.time | date:'ss' }}</span></div>
         <div class="calendar xxsmall"></div>
     </div>
 
