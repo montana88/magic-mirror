@@ -1,4 +1,4 @@
-angular.module('magicMirror', ['ngSanitize'])
+angular.module('magicMirror', ['ngSanitize', 'news-directive'])
 
     .controller('TimeController', TimeController)
 
