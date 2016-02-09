@@ -48,7 +48,7 @@ function feed ($http, $interval, $filter) {
                     // articleId is not the same get new article
 
                     vm.bulletin = response.data.responseData.feed.entries[articleId];
-                    console.log(Date(response.data.responseData.feed.entries[articleId].publishedDate));
+
                     vm.publishedDate = $filter('date')(response.data.responseData.feed.entries[articleId].publishedDate, "EEE dd-MMM-yyyy HH:mm:ss");
 
                     // Update previous ArticleId.

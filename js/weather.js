@@ -5,7 +5,7 @@ var loadWeatherApi = {
 
         var countDays = 5;
         var xhr = new XMLHttpRequest();
-        xhr.open("GET", "http://api.openweathermap.org/data/2.5/forecast/daily?cnt=" + countDays + "&id=2754073&APPID=bbdbb29b96c275d6db8c97014b905325", false); //, false for the message
+        xhr.open("GET", "http://api.openweathermap.org/data/2.5/forecast/daily?cnt=" + countDays + "&id=2754073&APPID=fa39706c5271705ecd18566772072c08", false); //, false for the message
         xhr.send();
 
         var json = JSON.parse(xhr.response);

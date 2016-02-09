@@ -18,6 +18,8 @@
 
     <script src="js/magic-mirror.js"></script>
     <script src="js/news-feed.js"></script>
+    <script src="js/weather-feed.js"></script>
+    <script src="js/wunderlist.js"></script>
 </head>
 <body>
 
@@ -31,9 +33,13 @@
 
 <div id="weather" class="right small top"></div>
 
-<news-feed id="news" class="bottom center-hor xxsmall"></news-feed>
+<!--<weather-feed id="weather" class="right small top"></weather-feed>-->
 
-    <script src="js/jquery-2.1.4.min.js"></script>
+<wunderlist class="bottom left small"></wunderlist>
+
+<news-feed id="news" class="bottom right xxsmall"></news-feed>
+
+    <script src="js/lib/jquery-2.1.4.min.js"></script>
     <script src="js/rrule.js"></script>
     <script src="js/weather.js"></script>
     <script src="js/ical_parser.js"></script>

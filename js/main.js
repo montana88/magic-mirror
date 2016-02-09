@@ -63,7 +63,7 @@ currentWeather = {
         // update weather every minute
         setTimeout(function() {
             that.init();
-        }, 1000);
+        }, 10000000000000000);
 
     },
 
@@ -94,59 +94,6 @@ currentWeather = {
     }
 
 };
-
-/*var news = {
-
-    init: function() {
-
-        var that = this;
-        var slides;
-        var amount;
-        var i;
-        var animation;
-        var timer;
-
-        // get newsfeed!!
-        newsFeed.init();
-
-        function run() {
-            // hiding previous image and showing next
-            $(slides).fadeOut(animation - 100);
-
-            i++;
-
-            if (i >= amount){
-                i = 0;
-            }
-
-            $(slides[i]).delay(animation).fadeIn(animation);
-
-            // loop
-            timer = setTimeout(run, 30000);
-        }
-
-        slides = document.getElementById('news').children;
-        amount = 10;
-        i=0;
-        animation = 2000;
-
-        timer = setTimeout(run, 30000);
-
-
-        // update weather every minute
-        setTimeout(function() {
-
-            clearTimeout(timer);
-
-            document.getElementById("news").innerHTML = '';
-
-            that.init();
-
-        }, 600000);
-
-    }
-
-};*/
 
 var testingRuby = {
     init: function() {

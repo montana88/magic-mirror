@@ -1,4 +1,4 @@
-angular.module('magicMirror', ['ngSanitize', 'news-directive'])
+angular.module('magicMirror', ['ngSanitize', 'news-directive', 'weather-directive', 'wunderlist-directive'])
 
     .controller('TimeController', TimeController)
 
@@ -49,14 +49,16 @@ function funnyMessage ($http, $interval) {
     function getJoke () {
 
         // Reference: http://www.icndb.com/api/
+        $http({
 
-        $http
-            .get('http://api.icndb.com/jokes/random')
-            .success(
-            function(data){
-                vm.joke = data.value.joke;
-            }
-        );
+            method: 'GET',
+            url: 'http://api.icndb.com/jokes/random'
+
+        }).then(function successCallback(response){
+
+            vm.joke = response.data.value.joke;
+
+        });
 
     }
 
