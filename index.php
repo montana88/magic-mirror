@@ -7,7 +7,7 @@
         var gitHash = '<?php echo trim(`git rev-parse HEAD`) ?>';
     </script>
     <meta name="google" value="notranslate">
-    <!--<meta http-equiv="refresh" content="21600; URL=http://localhost:8888/magic-mirror/">-->
+    <meta http-equiv="refresh" content="3600000; URL=http://localhost:8888/magic-mirror/">
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/main.css">
 
@@ -17,6 +17,7 @@
     <script src="js/lib/moment-with-langs.min.js"></script>
 
     <script src="js/magic-mirror.js"></script>
+    <script src="js/clockDate.js"></script>
     <script src="js/news-feed.js"></script>
     <script src="js/weather-feed.js"></script>
     <script src="js/wunderlist.js"></script>

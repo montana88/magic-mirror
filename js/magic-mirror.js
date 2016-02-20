@@ -1,42 +1,40 @@
-angular.module('magicMirror', ['ngSanitize', 'news-directive', 'weather-directive', 'wunderlist-directive'])
-
-    .controller('TimeController', TimeController)
+angular.module('magicMirror', ['ngSanitize', 'news-directive', 'weather-directive', 'wunderlist-directive', 'clockDate'])
 
     .controller('funnyMessage', funnyMessage)
 
+    .value('daysOfTheWeek', ['Zondag', 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag'])
+
+    .value('months', ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'])
+
+    .factory('ajaxCall', ajaxCall)
+
 ;
 
-TimeController.$inject = ['$interval', '$filter'];
+funnyMessage.$inject = ['ajaxCall', '$interval'];
 
-funnyMessage.$inject = ['$http', '$interval'];
+ajaxCall.$inject = ['$http'];
 
-function TimeController ($interval, $filter) {
+function ajaxCall ($http) {
 
-    var vm = this,
-        weekdays = ['Zondag', 'Maandag', 'Dinsdag', 'Woensdag', 'Donderdag', 'Vrijdag', 'Zaterdag'],
-        months = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
+    var factory = {};
 
-    tick();
+    factory.getData = function (method, url, cache) {
 
-    $interval(tick, 1000);
+        return $http({
 
-    function tick () {
+            method: method,
+            url: url,
+            cache: cache
 
-        var date = new Date(),
-            dayNumber = $filter('date')(Date.now(), "dd"),
-            dayName = weekdays[date.getDay()],
-            monthName = months[$filter('date')(Date.now(), "M") - 1],
-            year = $filter('date')(Date.now(), "yyyy");
+        });
 
-        vm.time = Date.now();
+    };
 
-        vm.date = dayName + ' ' + dayNumber + ' ' + monthName + ' ' + year;
-
-    }
+    return factory;
 
 }
 
-function funnyMessage ($http, $interval) {
+function funnyMessage (ajaxCall, $interval) {
 
     var vm = this;
 
@@ -48,17 +46,22 @@ function funnyMessage ($http, $interval) {
 
     function getJoke () {
 
+        ajaxCall.getData('GET', 'http://api.icndb.com/jokes/random')
+            .then(function successCallback(response){
+                vm.joke = response.data.value.joke;
+            });
+
         // Reference: http://www.icndb.com/api/
-        $http({
-
-            method: 'GET',
-            url: 'http://api.icndb.com/jokes/random'
-
-        }).then(function successCallback(response){
-
-            vm.joke = response.data.value.joke;
-
-        });
+//        $http({
+//
+//            method: 'GET',
+//            url: 'http://api.icndb.com/jokes/random'
+//
+//        }).then(function successCallback(response){
+//
+//            vm.joke = response.data.value.joke;
+//
+//        });
 
     }
 

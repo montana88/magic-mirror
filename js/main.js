@@ -63,7 +63,7 @@ currentWeather = {
         // update weather every minute
         setTimeout(function() {
             that.init();
-        }, 10000000000000000);
+        }, 10000);
 
     },
 
@@ -91,36 +91,6 @@ currentWeather = {
 
         return windDegName;
 
-    }
-
-};
-
-var testingRuby = {
-    init: function() {
-        $.getJSON("temp.json", function(data) {
-            console.log(data);
-        });
-    }
-};
-
-var gitReload = {
-
-    reload: function() {
-
-        var that = this;
-
-        $.getJSON('githash.php', {}, function(json, textStatus) {
-            if (json) {
-                if (json.gitHash != gitHash) {
-                    console.log('check 2');
-                    window.location.reload();
-                    window.location.href = window.location.href;
-                }
-            }
-        });
-        setTimeout(function() {
-            that.reload();
-        }, 3000);
     }
 
 };
@@ -215,7 +185,7 @@ var calendar = {
 
             setTimeout(function() {
                 that.updateCalendarData();
-            }, 10000);
+            }, 20000);
         });
     },
 
@@ -240,7 +210,7 @@ var calendar = {
 
         setTimeout(function() {
             that.updateCalendar();
-        }, 1000);
+        }, 10000);
     }
 
 };

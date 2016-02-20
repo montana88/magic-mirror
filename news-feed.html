@@ -1,7 +1,7 @@
 <div class="item">
 
-    <h1>{{ news.bulletin.title }}</h1>
+    <h1 ng-bind-html="news.bulletin.title"></h1>
     <small>{{ news.publishedDate }}</small>
-    <p>{{ news.bulletin.contentSnippet }}</p>
+    <p ng-bind-html="news.bulletin.contentSnippet"></p>
 
 </div>

@@ -2,32 +2,36 @@ angular.module('wunderlist-directive', [])
 
     .directive('wunderlist', wunderlist)
 
-    .factory('wunderlistSession', function($http){
-
-        return {
-
-            getSessions: function(url, additionalHeaders) {
-
-                return $http({
-
-                    method: 'GET',
-                    url: url,
-                    headers: {
-                        'x-access-token': 'b223b7ade22af671c528b1301ed0506b1e01b5b32bede1e7c05b7cd8ddaa',
-                        'x-client-id': '524edc726a1f7a790fcf'
-                    }
-
-                });
-
-            }
-
-        };
-
-    })
+    .factory('wunderlistSession', wunderlistSession)
 
 ;
 
 wunderlistData.$inject = ['wunderlistSession', '$interval'];
+
+wunderlistData.$inject = ['$http'];
+
+function wunderlistSession ($http){
+
+    return {
+
+        getSessions: function(url, additionalHeaders) {
+
+            return $http({
+
+                method: 'GET',
+                url: url,
+                headers: {
+                    'x-access-token': 'b223b7ade22af671c528b1301ed0506b1e01b5b32bede1e7c05b7cd8ddaa',
+                    'x-client-id': '524edc726a1f7a790fcf'
+                }
+
+            });
+
+        }
+
+    };
+
+}
 
 function wunderlist () {
 
@@ -42,21 +46,21 @@ function wunderlist () {
 
 function wunderlistData (wunderlistSession, $interval) {
 
-    var vm = this;
-
-    getData();
-
-    $interval(getData, 20000);
-
-    function getData () {
-
-        wunderlistSession
-            .getSessions('https://a.wunderlist.com/api/v1/reminders?task_id=1611467706')
-            .then(function successCallback (response) {
-
-                console.log(response);
-
-            });
+//    var vm = this;
+//
+//    getData();
+//
+//    $interval(getData, 20000);
+//
+//    function getData () {
+//
+//        wunderlistSession
+//            .getSessions('https://a.wunderlist.com/api/v1/reminders?task_id=1611467706')
+//            .then(function successCallback (response) {
+//
+//                console.log(response);
+//
+//            });
 
         /*$http({
 
@@ -74,6 +78,6 @@ function wunderlistData (wunderlistSession, $interval) {
 
         });*/
 
-    }
+//    }
 
 }
