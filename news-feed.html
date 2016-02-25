@@ -1,7 +1,7 @@
-<div class="item">
+<div ng-repeat="bulletin in news.bulletins" ng-class="news.articleId === $index ? 'item active' : 'item'">
 
-    <h1 ng-bind-html="news.bulletin.title"></h1>
-    <small>{{ news.publishedDate }}</small>
-    <p ng-bind-html="news.bulletin.contentSnippet"></p>
+    <h1 ng-bind-html="bulletin.title"></h1>
+    <small>{{ bulletin.publishedDate | getDutchDates:'dag dagNummer maand jaar uur minuut' }}</small>
+    <p ng-bind-html="bulletin.contentSnippet"></p>
 
 </div>

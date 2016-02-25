@@ -8,11 +8,89 @@ angular.module('magicMirror', ['ngSanitize', 'news-directive', 'weather-directiv
 
     .factory('ajaxCall', ajaxCall)
 
+    .filter('getDutchDates', getDutchDates)
+
 ;
 
+getDutchDates.$inject = ['daysOfTheWeek', 'months'];
+ajaxCall.$inject = ['$http'];
 funnyMessage.$inject = ['ajaxCall', '$interval'];
 
-ajaxCall.$inject = ['$http'];
+function getDutchDates (daysOfTheWeek, months) {
+
+    return function(input, format) {
+//console.log(input, format);
+
+        var dates = new Date(input),
+            index,
+            string = '',
+            values = [
+                {'dag': false},
+                {'dagNummer': false},
+                {'maand': false},
+                {'jaar': false},
+                {'uur': false},
+                {'minuut': false},
+                {'sec': false}
+            ];
+
+        //console.log(filterOptions);
+
+        if(format !== undefined) {
+
+            var filterOptions = format.split(' ');
+
+            for(index = 0; index < filterOptions.length; index++) {
+
+                switch(filterOptions[index]) {
+                    case 'dag':
+                        values[0] = true;
+                        string += daysOfTheWeek[dates.getDay()] + ' ';
+                        break;
+                    case 'dagNummer':
+                        values[1] = true;
+                        string += dates.getDate() + ' ';
+                        break;
+                    case 'maand':
+                        values[2] = true;
+                        string += months[dates.getMonth()] + ' ';
+                        break;
+                    case 'jaar':
+                        values[3] = true;
+                        string += dates.getFullYear() + ' ';
+                        break;
+                    case 'uur':
+                        values[4] = true;
+                        string += twoDigits(dates.getHours()) + ':';
+                        break;
+                    case 'minuut':
+                        values[5] = true;
+                        string += twoDigits(dates.getMinutes());
+                        break;
+                    case 'sec':
+                        values[6] = true;
+                        string += twoDigits(dates.getSeconds());
+                        break;
+                    default:
+                }
+
+            }
+
+        } else {
+
+            string = daysOfTheWeek[dates.getDay()] + ' ' + dates.getDate() + ' ' + months[dates.getMonth()] + ' ' + dates.getFullYear() + ' ' + twoDigits(dates.getMinutes()) + ':' + twoDigits(dates.getHours());
+
+        }
+
+        return string;
+
+    };
+
+    function twoDigits(number) {
+        return (number.toString().length === 1) ? '0' + number : number;
+
+    }
+}
 
 function ajaxCall ($http) {
 

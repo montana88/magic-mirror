@@ -7,7 +7,7 @@
         var gitHash = '<?php echo trim(`git rev-parse HEAD`) ?>';
     </script>
     <meta name="google" value="notranslate">
-    <meta http-equiv="refresh" content="3600000; URL=http://localhost:8888/magic-mirror/">
+    <meta http-equiv="refresh" content="3600; URL=http://<?= $_SERVER[HTTP_HOST] . $_SERVER[REQUEST_URI] ?>"> <!-- 3600000 -->
     <link rel="stylesheet" href="css/icons.css">
     <link rel="stylesheet" href="css/main.css">
 
@@ -27,8 +27,8 @@
 <div id="message" class="center-ver center-hor small" ng-controller="funnyMessage as message" ng-bind-html="message.joke"></div>
 
 <div class="top left" ng-controller="TimeController as clock">
-        <div id="date" class="date small dimmed">{{ clock.date }}</div>
-        <div id="time" class="time">{{ clock.time | date:'HH:mm' }} <span class="sec">{{ clock.time | date:'ss' }}</span></div>
+        <div id="date" class="date small dimmed">{{ clock.time | getDutchDates:'dag dagNummer maand jaar' }}</div>
+        <div id="time" class="time">{{ clock.time | getDutchDates:'uur minuut' }} <span class="sec">{{ clock.time | getDutchDates:'sec' }}</span></div>
         <div class="calendar xxsmall"></div>
     </div>
 

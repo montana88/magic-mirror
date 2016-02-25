@@ -20,12 +20,14 @@ function newsfeed () {
 function feed ($http, $interval, $filter, ajaxCall, daysOfTheWeek, months ) {
 
     var vm = this,
-        url = 'http://feeds.nos.nl/nosjournaal?format=rss',
-        pastArticleId;
+        url = 'http://feeds.nos.nl/nosjournaal?format=rss';
+
+    vm.articleId = 1;
 
     getData();
 
-    $interval(getData, 30000);
+    $interval(getData, 1800000);
+    $interval(newArticle, 30000);
 
     function getData () {
 
@@ -35,37 +37,29 @@ function feed ($http, $interval, $filter, ajaxCall, daysOfTheWeek, months ) {
                 true
             )
             .then(
+
             function succesCallback(response) {
 
-                var articleId = Math.floor(Math.random() * 20);
+                var dates = new Date(response.data.responseData.feed.entries.publishedDate);
+                vm.bulletins = response.data.responseData.feed.entries;
 
-                // Check if articleId is same as last 1
-                if (articleId !== pastArticleId) {
+            },
 
-                    var dates = new Date(response.data.responseData.feed.entries[articleId].publishedDate),
-                        minutesToTwoDigits = dates.getMinutes();
+            function (errorCallback) {
+                // There was something wrong getting the data
 
-                    if(minutesToTwoDigits.toString().length === 1) {
-                        twoDigits = '0' + twoDigits
-                    }
+                vm.error = true;
+                vm.message = errorCallback;
 
-                    vm.bulletin = response.data.responseData.feed.entries[articleId];
 
-                    vm.publishedDate = daysOfTheWeek[dates.getDay()] + ' ' + dates.getDate() + ' ' + months[dates.getMonth()] + ' ' + dates.getFullYear() + ' ' + dates.getHours() + ':' + twoDigits;
-
-                    // Update previous ArticleId.
-                    pastArticleId = articleId;
-
-                } else {
-                    // articleId is same as last ID
-
-                    // Try again
-                    getData();
-
-                }
             }
+
         );
 
+    }
+
+    function newArticle () {
+        vm.articleId = Math.floor(Math.random() * 20);
     }
 
 }
