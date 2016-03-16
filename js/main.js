@@ -63,7 +63,7 @@ currentWeather = {
         // update weather every minute
         setTimeout(function() {
             that.init();
-        }, 10000);
+        }, 100000000000);
 
     },
 
@@ -72,19 +72,19 @@ currentWeather = {
         var windDegName;
 
         if (data < 23 && data > 0 || data > 338 && data < 360) {
-            windDegName = "z";
+            windDegName = "z ";
         } else if (data >= 23 && data <= 68) {
             windDegName = "zw";
         } else if (data > 68 && data <= 113) {
-            windDegName = "w";
+            windDegName = "w ";
         } else if (data > 113 && data <= 158) {
             windDegName = "nw";
         } else if (data > 158 && data <= 203) {
-            windDegName = "n";
+            windDegName = "n ";
         } else if (data > 203 && data <= 248) {
             windDegName = "no";
         } else if (data > 248 && data <= 293) {
-            windDegName = "o";
+            windDegName = "o ";
         } else if (data > 293 && data <= 338) {
             windDegName = "zo";
         }
@@ -217,7 +217,7 @@ var calendar = {
 
 window.onload = function () {
 
-    currentWeather.init();
+//    currentWeather.init();
 //    news.init();
     calendar.updateCalendarData();
     calendar.updateCalendar();

@@ -6,9 +6,9 @@
 
     ;
 
-    TimeController.$inject = ['$interval', '$filter', 'daysOfTheWeek', 'months'];
+    TimeController.$inject = ['$interval'];
 
-    function TimeController ($interval, $filter, daysOfTheWeek, months) {
+    function TimeController ($interval) {
         var vm = this;
 
         tick();
@@ -17,15 +17,9 @@
 
         function tick () {
 
-            var date = new Date(),
-                dayNumber = $filter('date')(Date.now(), "dd"),
-                dayName = daysOfTheWeek[date.getDay()],
-                monthName = months[$filter('date')(Date.now(), "M") - 1],
-                year = $filter('date')(Date.now(), "yyyy");
+            var date = new Date();
 
             vm.time = Date.now();
-
-            vm.date = dayName + ' ' + dayNumber + ' ' + monthName + ' ' + year;
 
         }
 

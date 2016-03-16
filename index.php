@@ -32,13 +32,11 @@
         <div class="calendar xxsmall"></div>
     </div>
 
-<div id="weather" class="right small top"></div>
-
-<!--<weather-feed id="weather" class="right small top"></weather-feed>-->
+<weather-feed id="weather" class="right small top"></weather-feed>
 
 <wunderlist class="bottom left small"></wunderlist>
 
-<news-feed id="news" class="bottom right xxsmall"></news-feed>
+<news-feed id="news" class="bottom center-hor xxsmall"></news-feed>
 
     <script src="js/lib/jquery-2.1.4.min.js"></script>
     <script src="js/rrule.js"></script>

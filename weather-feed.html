@@ -1,53 +1,36 @@
+<div class="currentDay">
 
-
-
-
-<div id="weather" class="right small top">
-    <div class="currentDay">
-        <div class="weatherCurrent">
-            <p style="font-size:22px;margin: 0;">
-                <span class="icon-small wi-up"></span>
-                12˚
-                <span class="icon-small wi-down"></span>
-                10˚
-                <span class="icon-small wi-wind-north" style="display: inline-block;transform: rotate(211deg);"></span>
-                NO
-                <span class="icon-small wi-strong-wind"></span>
-                6.9
-            </p>
-            <p style="margin: -10px 0 0 0;font-size: 67px;text-align:center;padding-left: 20px;" class="wi-rain">
-                <span class="currentdayTemp">
-                    <span class="icon-medium wi-thermometer"></span>
-                    11˚
-                </span>
-            </p>
-        </div>
+    <div class="weatherCurrent">
+        <p style="margin: 0;">
+            <span class="icon-small wi-up"></span> {{ weather.weatherCast[0].tempMax }}&#730;
+            <span class="icon-small wi-down"></span> {{ weather.weatherCast[0].tempMin }}&#730;
+            <span class="icon-small wi-wind-north" ng-style="weather.weatherCast[0].deg"></span> {{ weather.weatherCast[0].wind }}
+            <span class="icon-small wi-strong-wind"></span>{{ weather.weatherCast[0].windSpeed }}
+        </p>
+        <p style="margin: -10px 0 0 0;font-size: 67px;text-align:center;padding-left: 20px;" ng-class="weather.weatherCast[0].icon">
+        <span class="currentdayTemp">
+            <span class="icon-medium wi-thermometer"></span>
+            {{weather.weatherCast[0].temp}}&#730;
+        </span>
+        </p>
     </div>
     <table class="forecast-table">
         <tbody>
-        <tr>
-            <td class="day">Wo</td>
-            <td>
-                <span class="wi-rain"></span>
-            </td>
-            <td>
-                <span style="float:left;">12˚</span>
-            </td>
-            <td>
-                <span style="float:right;">
-                    <span class="wi-wind-north" style="margin-right:5px;display: inline-block;transform: rotate(224deg);"></span>
-                    NO
-                </span>
-            </td>
-        </tr>
-        <tr>
-            <td class="day">Do</td>
-            <td>
-                <span class="wi-cloudy-windy"></span>
-            </td>
-            <td>
-                <span style="float:left;">9˚</span>
-            </td>
-            <td>
-                <span style="float:right;">
-                    <span class="wi-wind-north" style="margin-right:5px;display: inline-block;transform: rotate(276deg);"></span>O</span></td></tr><tr><td class="day">Vr</td><td><span class="wi-rain"></span></td><td><span style="float:left;">10˚</span></td><td><span style="float:right;"><span class="wi-wind-north" style="margin-right:5px;display: inline-block;transform: rotate(235deg);"></span>NO</span></td></tr><tr><td class="day">Za</td><td><span class="wi-rain"></span></td><td><span style="float:left;">8˚</span></td><td><span style="float:right;"><span class="wi-wind-north" style="margin-right:5px;display: inline-block;transform: rotate(257deg);"></span>O</span></td></tr></tbody></table></div>
+        <!--repeat-->
+
+            <tr ng-repeat="weatherCast in weather.weatherCast" ng-if="$index > 0">
+                {{$index}}
+                <td class="day">{{ weatherCast.day | getDutchDates:'dag' }}</td>
+                <td><span ng-class="weatherCast.icon"></span></td>
+                <td><span style="float:left;">{{weatherCast.temp}}&#730;</span></td>
+                <td>
+                    <span style="float:right;">
+                    <span class="wi-wind-north" ng-style="weatherCast.deg"></span>
+                    {{ weatherCast.wind | uppercase }}
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

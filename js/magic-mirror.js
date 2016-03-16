@@ -19,7 +19,6 @@ funnyMessage.$inject = ['ajaxCall', '$interval'];
 function getDutchDates (daysOfTheWeek, months) {
 
     return function(input, format) {
-//console.log(input, format);
 
         var dates = new Date(input),
             index,
@@ -33,8 +32,6 @@ function getDutchDates (daysOfTheWeek, months) {
                 {'minuut': false},
                 {'sec': false}
             ];
-
-        //console.log(filterOptions);
 
         if(format !== undefined) {
 
@@ -123,23 +120,11 @@ function funnyMessage (ajaxCall, $interval) {
     $interval(getJoke, 3600000); // 3600000 = 1 hour
 
     function getJoke () {
-
+// Reference: http://www.icndb.com/api/
         ajaxCall.getData('GET', 'http://api.icndb.com/jokes/random')
             .then(function successCallback(response){
                 vm.joke = response.data.value.joke;
             });
-
-        // Reference: http://www.icndb.com/api/
-//        $http({
-//
-//            method: 'GET',
-//            url: 'http://api.icndb.com/jokes/random'
-//
-//        }).then(function successCallback(response){
-//
-//            vm.joke = response.data.value.joke;
-//
-//        });
 
     }
 

@@ -4,7 +4,7 @@ angular.module('news-directive', [])
 
 ;
 
-feed.$inject = ['$http', '$interval', '$filter', 'ajaxCall', 'daysOfTheWeek', 'months'];
+feed.$inject = ['$interval', 'ajaxCall'];
 
 function newsfeed () {
 
@@ -17,7 +17,7 @@ function newsfeed () {
 
 }
 
-function feed ($http, $interval, $filter, ajaxCall, daysOfTheWeek, months ) {
+function feed ($interval, ajaxCall ) {
 
     var vm = this,
         url = 'http://feeds.nos.nl/nosjournaal?format=rss';
@@ -32,11 +32,10 @@ function feed ($http, $interval, $filter, ajaxCall, daysOfTheWeek, months ) {
     function getData () {
 
         ajaxCall.getData(
-                'JSONP',
-                '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=50&callback=JSON_CALLBACK&q=' + encodeURIComponent(url),
-                true
-            )
-            .then(
+            'JSONP',
+            '//ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=50&callback=JSON_CALLBACK&q=' + encodeURIComponent(url),
+            true
+        ).then(
 
             function succesCallback(response) {
 
