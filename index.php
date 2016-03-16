@@ -20,6 +20,7 @@
     <script src="js/clockDate.js"></script>
     <script src="js/news-feed.js"></script>
     <script src="js/weather-feed.js"></script>
+    <script src="js/calendar.js"></script>
     <script src="js/wunderlist.js"></script>
 </head>
 <body>
@@ -30,6 +31,7 @@
         <div id="date" class="date small dimmed">{{ clock.time | getDutchDates:'dag dagNummer maand jaar' }}</div>
         <div id="time" class="time">{{ clock.time | getDutchDates:'uur minuut' }} <span class="sec">{{ clock.time | getDutchDates:'sec' }}</span></div>
         <div class="calendar xxsmall"></div>
+        <calendar id="calendar" class="xxsmall"></calendar>
     </div>
 
 <weather-feed id="weather" class="right small top"></weather-feed>

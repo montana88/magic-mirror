@@ -1,4 +1,4 @@
-angular.module('magicMirror', ['ngSanitize', 'news-directive', 'weather-directive', 'wunderlist-directive', 'clockDate'])
+angular.module('magicMirror', ['ngSanitize', 'news-directive', 'weather-directive', 'wunderlist-directive', 'clockDate', 'calendar'])
 
     .controller('funnyMessage', funnyMessage)
 
